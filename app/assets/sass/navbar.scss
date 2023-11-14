@@ -1,0 +1,40 @@
+.navbar{
+    padding: $normal;
+    margin: $normal;
+    border-radius: $small;
+    background-color: $background;
+    box-shadow: 0px 0px 3px 3px $shadow;
+    user-select: none;
+
+    @include flex-container(center, none, row);
+    span{
+        font-weight: bold;
+        color: $primary;
+        font-size: $medium;
+        @media screen and (max-width: $break-small) {
+            font-size: calc($medium - 0.3rem);
+        }
+    }
+    ul{
+        flex-grow: 1;
+        @include flex-container(center, none, row-reverse);
+        li{
+            margin-right: $large;
+            a{
+                i{
+                    font-weight: lighter;
+                    font-size: $medium;
+                    color: $text;
+                    transition: color 0.1s ease-in-out;
+                }
+                i:hover{
+                    color: $primary;
+                }
+            }
+            
+            
+            list-style: none;
+        }
+        
+    }
+}

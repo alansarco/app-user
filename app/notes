@@ -1,0 +1,10 @@
+home:
+    stores announcements
+
+profile: 
+    edit information
+    logout
+
+cart:
+    list of requested documents
+    requesting other docs while current doc is still not finished is not allowed!
