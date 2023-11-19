@@ -15,10 +15,6 @@
         </header>
 
         <main class="bg-white my-3 shadow p-4 flex flex-col relative">
-            <div v-show="show" class="absolute max-h-full top-0 left-0 bg-blue-300">
-                Loading...
-            </div>
-
             <slot /> <!-- this is literally the pages -->
         </main>
 
@@ -29,14 +25,5 @@
 </template>
 
 <script setup>
-    const nuxtApp = useNuxtApp();
-    const show = ref(false);
 
-    addRouteMiddleware('global-loader', () => {
-        show.value = true
-    }, {
-        global: true
-    })
-
-    nuxtApp.hook('page:finish', () => { show.value = false; })
 </script>
