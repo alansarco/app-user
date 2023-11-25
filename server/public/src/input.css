@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-grid{
+    display: grid;
+    grid-template-rows: 0fr 1fr 0fr;
+}

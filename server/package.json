@@ -6,21 +6,28 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build:css": "postcss styles.css -o public/styles/styles.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^10.4.16",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
+    "bootstrap-icons": "^1.11.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "mysql2": "^3.6.3",
     "path": "^0.12.7",
-    "sequelize": "^6.34.0"
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "sequelize": "^6.34.0",
+    "tailwindcss": "^3.3.5"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
