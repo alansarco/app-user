@@ -6,3 +6,10 @@
     display: grid;
     grid-template-rows: 0fr 1fr 0fr;
 }
+.bg-trans{
+    background-color: rgba(50,50,50,0.3);
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}

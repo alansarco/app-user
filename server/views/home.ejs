@@ -1,9 +1,56 @@
 <%- include('partials/header');  %>
 
 
-        <main>Home Page</main>
+        <main class="flex flex-col my-4 shadow-2xl rounded-lg relative">
+                <section class="flex-grow-0 text-center bg-blue-400 rounded-t-lg p-2">
+                        <span class="font-normal text-white text-lg">Announcements</span>
+                </section>
+
+                <section class="flex-grow h-0 flex flex-col items-center overflow-scroll bg-blue-200 rounded-b-lg">
+                        <% for (let x = 0; x < data.length; x ++) {%>
+                        <div class="bg-white w-3/5 rounded-lg p-4 mt-4 shadow-md">
+                                
+                                <header class="flex flex-col">
+                                        <span class="font-bold text-2xl"><%= data[x].title %></span>
+                                        <span class="font-thin text-gray-400"><%= data[x].created_by %> - <%= data[x].created_at %></span>
+                                </header>
+                                <main><%= data[x].description %></main>
+
+                                <footer>
+                                        <i class="bi bi-chat-left-text-fill text-blue-400 not-italic cursor-pointer">
+                                                <span class="ml-2 comment_btn">Comments</span>
+                                        </i>
+                                </footer>
+                               
+                        </div>
+                        <!-- comment section -->
+                        <div class="absolute top-0 left-0 h-full w-full accent-slate-200 hidden rounded-lg justify-center items-center comment_container bg-trans">
+                                <div class="w-2/4 h-5/6 bg-white rounded-lg shadow-2xl flex flex-col p-4" id="comments">
+                                        <header class="flex-grow-0">
+                                                <span class="font-bold"><%= data[x].title %></span>
+                                                <span>- Comments</span>
+                                        </header>
+                                        <main class="flex-grow">
+                                                comments
+                                        </main>
+                                        <footer class="flex-grow-0 ">
+                                                <form class="flex flex-row justify-center items-center">
+                                                        <input type="text" class="shadow-md rounded-lg w-3/4 outline-none p-2" placeholder="Enter Comment">
+                                                        <button class="bg-green-400 p-2 rounded-lg ml-4 shadow-md text-white">Send</button>
+                                                </form>
+                                        </footer>
+                                </div>
+                        </div>
+                        <% } %>
+                        <div class="bg-blue-400 mt-4 p-2 rounded-lg cursor-pointer transition-shadow duration-200 hover:shadow-md">
+                                <span class="text-white font-bold" id="load_more">Load More</span>
+                        </div>
+                </section>
+        </main>
 
         <footer>Footer</footer>
+        <script src="js/sendData.js"></script>
+        <script src="js/commentModal.js"></script>
 
 
 <%- include('partials/footer');  %>

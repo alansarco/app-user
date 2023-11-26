@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/output.css" rel="stylesheet"/>
+    <!-- Option 1: Include in HTML -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <title>User App</title>
 </head>
 <body>
@@ -11,11 +13,12 @@
     <div class="custom-grid h-screen w-screen bg-white px-40 py-5">
         <header class="shadow-md rounded-md bg-blue-400 p-4 flex flex-row items-center">
             <span class="text-white font-bold text-3xl flex-grow-0">Barangay App</span>
-            <nav class="flex-grow flex flex-row justify-center">
+            <div class="flex-grow flex flex-row items-center justify-center">
 
-                <a href="/home" class="text-white text-xl mr-16 font-thin transition-all duration-200 hover:font-bold">Home</a>
-                <a href="/profile" class="text-white text-xl font-thin transition-all duration-200 hover:font-bold">Profile</a>
-            </nav>
+                <a href="/home" class="text-3xl text-white cursor-pointer mx-5 transition-transform hover:scale-110 duration-150"><i class="bi bi-house-door-fill"></i></a>
+                <a href="/profile" class="text-3xl text-white cursor-pointer mx-5 transition-transform hover:scale-110 duration-150"><i class="bi bi-person-fill"></i></a>
+
+            </div>
             <span>
                 <a href="/profile" class="text-white text-xl font-bold transition-all duration-200 hover:text-yellow-400">Username</a>
             </span>
