@@ -1,5 +1,5 @@
 // send some data
-const uri = '/home';
+const uri = '/pagination';
 const value = {
     pageSize: 3
 }

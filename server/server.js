@@ -18,8 +18,14 @@ app.set('view engine', 'ejs');
 // routes
 const auth = require('./routes/authRoute');
 const user = require('./routes/userRoute');
-app.use('/auth', auth);
+app.use('/', auth);
 app.use('/', user);
+
+// prevents going back a protected page
+app.use((req, res, next) => {
+    res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    next();
+});
 
 app.listen(4000, () => {
     console.log('Running on port 4000');
