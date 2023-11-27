@@ -1,8 +1,5 @@
 const form = document.getElementById('login_form');
 
-
-
-
 form.addEventListener('submit', (e) => {
     const username = document.getElementById('username');
     const password = document.getElementById('password');

@@ -19,26 +19,23 @@ const loginUser = async (req, res) => {
 		.then( async ([results, fields]) => {
 
 			// this is from a php api data 
-			console.log('OLD hash:', results[0].password);
 			var hash = results[0].password;
 			var bcrypt = require('bcrypt');
 			hash = hash.replace(/^\$2y(.+)$/i, '$2a$1');
 
 			// checks if the password is good
 			const match = await bcrypt.compare(formData.password, hash);
-			console.log('NEW hash:', hash);
-			console.log('Password match: ', match);
 			if(match){
 				res.redirect('/home');
 			}
 			else{
-				const dataToSend = `Username and Password doesn't match!`;
+				const dataToSend = `User ${results[0].username} password is incorrect!`;
 				res.redirect(`/login?data=${encodeURIComponent(dataToSend)}`);
 			}
 			
 		})
 		.catch(error => {
-			const dataToSend = `Username does not exist`;
+			const dataToSend = `User does not exist`;
 			res.redirect(`/login?data=${encodeURIComponent(dataToSend)}`);
 		});
 	}
