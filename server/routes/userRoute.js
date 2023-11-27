@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { dbConnection } = require('../db_connection/dbConnection');
-const { formatDate } = require('../utils/formatDate');
 
 let pageSize = 3;
 router.post('/home', (req, res) =>{
@@ -25,7 +24,7 @@ router.get('/home', (req, res)=>{
         const offSet = (page - 1) * pageSize;
 		db.promise().query('SELECT * FROM announcements LIMIT ?, ?;', [offSet, pageSize])
 		.then(([results, fields]) => {
-			res.status(200).render('home', {data: results, pageSize: pageSize, formatDate: formatDate});
+			res.status(200).render('home', {data: results, pageSize: pageSize});
 		})
 		.catch(error => res.status(500).json({errorMsg: `Shit happens ${error}`}));
 	} 

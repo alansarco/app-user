@@ -12,13 +12,13 @@
                                 
                                 <header class="flex flex-col">
                                         <span class="font-bold text-2xl"><%= data[x].title %></span>
-                                        <span class="font-thin text-gray-400"><%= data[x].created_by %> - <%= data[x].created_at %></span>
+                                        <span class="font-thin text-gray-400"><span class="font-bold"><%= data[x].created_by %></span> - <%= data[x].created_at.toLocaleDateString('en-US',{weekday: 'long', year: 'numeric', month:'long', day: 'numeric'}) %></span>
                                 </header>
                                 <main><%= data[x].description %></main>
 
                                 <footer>
-                                        <i class="bi bi-chat-left-text-fill text-blue-400 not-italic cursor-pointer">
-                                                <span class="ml-2 comment_btn">Comments</span>
+                                        <i class="bi bi-chat-left-text-fill text-blue-400 not-italic cursor-pointer comment_btn">
+                                                <span class="ml-2">Comments</span>
                                         </i>
                                 </footer>
                                
@@ -26,18 +26,29 @@
                         <!-- comment section -->
                         <div class="absolute top-0 left-0 h-full w-full accent-slate-200 hidden rounded-lg justify-center items-center comment_container bg-trans">
                                 <div class="w-2/4 h-5/6 bg-white rounded-lg shadow-2xl flex flex-col p-4" id="comments">
-                                        <header class="flex-grow-0">
+                                        <div class="flex-grow-0 flex items-center justify-end">
+                                                <i class="bi bi-x-square-fill text-xl text-red-500 cursor-pointer close_btn"></i>
+                                        </div>
+                                        <header class="flex-grow-0 flex items-center justify-center">
                                                 <span class="font-bold"><%= data[x].title %></span>
                                                 <span>- Comments</span>
                                         </header>
-                                        <main class="flex-grow">
-                                                comments
+                                        <main class="flex-grow h-0 flex flex-col items-center overflow-scroll">
+                                                <% for (let x = 0; x < 15; x++) {%>
+                                                <div class="p-4 bg-blue-100 w-4/5 mt-4 rounded-lg shadow-sm">
+                                                        <header>
+                                                                <span class="font-bold">Username</span>
+                                                        </header>
+                                                        <main>Comment <%= x %></main>
+                                                </div>
+                                                <% } %>
                                         </main>
-                                        <footer class="flex-grow-0 ">
-                                                <form class="flex flex-row justify-center items-center">
+                                        <footer class="flex-grow-0">
+                                                <form class="flex flex-row justify-center items-center comment_form">
                                                         <input type="text" class="shadow-md rounded-lg w-3/4 outline-none p-2" placeholder="Enter Comment">
                                                         <button class="bg-green-400 p-2 rounded-lg ml-4 shadow-md text-white">Send</button>
                                                 </form>
+                                                
                                         </footer>
                                 </div>
                         </div>
@@ -48,7 +59,7 @@
                 </section>
         </main>
 
-        <footer>Footer</footer>
+        <footer></footer>
         <script src="js/sendData.js"></script>
         <script src="js/commentModal.js"></script>
 

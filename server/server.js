@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 // routes
 const auth = require('./routes/authRoute');
 const user = require('./routes/userRoute');
-app.use('/announcement', auth);
+app.use('/auth', auth);
 app.use('/', user);
 
 app.listen(4000, () => {
