@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const path = require('path');
 
@@ -9,6 +10,7 @@ const path = require('path');
 app.use(cors());
 app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public/styles')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

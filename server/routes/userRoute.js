@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { dbConnection } = require('../db_connection/dbConnection');
+const {verifyToken} = require('../middlewares/verifyToken');
+const jwt = require('jsonwebtoken');
 
 let pageSize = 3;
 router.post('/pagination', (req, res) =>{
@@ -15,29 +17,46 @@ router.post('/pagination', (req, res) =>{
 	}
 	
 })
-
+// home page
 router.get('/home', (req, res)=>{
     const page = 1;
-    let a = false;
+	const token = req.cookies.token;
+
+	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  	res.header('Pragma', 'no-cache');
+	if (!token) {
+        return res.status(401).redirect('/login');
+    }
     try{
-		if(a == true){
-			res.redirect('/login');
-		}
-		else{
+			const decoded = jwt.verify(token, process.env.SECRET);
+			const user = decoded.user.username;
 			const db = dbConnection;
 			const offSet = (page - 1) * pageSize;
+
 			db.promise().query('SELECT * FROM announcements LIMIT ?, ?;', [offSet, pageSize])
 			.then(([results, fields]) => {
-				res.status(200).render('home', {data: results, pageSize: pageSize});
+				res.status(200).render('home', {data: results, pageSize: pageSize, user: user});
 			})
 			.catch(error => res.status(500).json({errorMsg: `Shit happens ${error}`}));
-		}
+		
 	} 
 	catch{
 		return res.status(500).json({message: 'Something went wrong'}); 
 	}
 });
+// profile page
 router.get('/profile', (req, res)=>{
-    res.status(200).render('profile', {page: 'profile'});
+	const token = req.cookies.token;
+	
+
+	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  	res.header('Pragma', 'no-cache');
+	if (!token) {
+        return res.status(401).redirect('/login');
+    }
+
+	const decoded = jwt.verify(token, process.env.SECRET);
+	const user = decoded.user.username;
+    res.status(200).render('profile', {page: 'profile', user: user});
 });
 module.exports = router;

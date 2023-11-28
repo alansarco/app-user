@@ -26,6 +26,14 @@ const loginUser = async (req, res) => {
 			// checks if the password is good
 			const match = await bcrypt.compare(formData.password, hash);
 			if(match){
+				const userData = {
+					id: results[0].id,
+					username: results[0].username
+				}
+				// generate some jwt
+				var jwt = require('jsonwebtoken');
+				var token = jwt.sign({ user: userData }, process.env.SECRET);
+				res.cookie('token', token, { httpOnly: true });
 				res.redirect('/home');
 			}
 			else{
@@ -44,8 +52,15 @@ const loginUser = async (req, res) => {
 	 }
 }
 
+// logout 
+const logout = (req, res) =>{
+	res.clearCookie('token');
+	res.redirect('/login');
+}
+
 // exports
 module.exports = {
 	loginPage,
-	loginUser
+	loginUser,
+	logout
 }
