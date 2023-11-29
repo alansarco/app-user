@@ -46,8 +46,8 @@
                                                 <% } %>
                                         </main>
                                         <footer class="flex-grow-0">
-                                                <form class="flex flex-row justify-center items-center comment_form">
-                                                        <input type="text" class="shadow-md rounded-lg w-3/4 outline-none p-2" placeholder="Enter Comment">
+                                                <form class="flex flex-row justify-center items-center" action="/create-comment" method="POST">
+                                                        <input type="text" class="shadow-md rounded-lg w-3/4 outline-none p-2" placeholder="Enter Comment" name="comment">
                                                         <button class="bg-green-400 p-2 rounded-lg ml-4 shadow-md text-white">Send</button>
                                                 </form>
                                                 

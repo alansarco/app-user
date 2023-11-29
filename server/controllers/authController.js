@@ -1,5 +1,6 @@
 const { dbConnection } = require('../db_connection/dbConnection');
 
+// login page
 const loginPage = (req, res) => {
     try{
 		const msg = req.query.data;
@@ -15,7 +16,7 @@ const loginUser = async (req, res) => {
 		const formData = req.body;
 		console.log(`Username: ${formData.username}, Password: ${formData.password}`);
 		const db = dbConnection;
-		db.promise().query(`SELECT * FROM users WHERE username = '${formData.username}';`)
+		db.promise().query(`SELECT u.username, u.id, u.password, r.firstname, r.lastname FROM users u LEFT JOIN residents r ON u.username = r.username WHERE u.username = '${formData.username}' AND r.deathdate IS NULL AND r.account_status = 1;`)
 		.then( async ([results, fields]) => {
 
 			// this is from a php api data 
@@ -28,7 +29,9 @@ const loginUser = async (req, res) => {
 			if(match){
 				const userData = {
 					id: results[0].id,
-					username: results[0].username
+					username: results[0].username,
+					firstName: results[0].firstname,
+					lastName: results[0].lastname
 				}
 				// generate some jwt
 				var jwt = require('jsonwebtoken');
@@ -52,8 +55,17 @@ const loginUser = async (req, res) => {
 	 }
 }
 
+const password = async (req, res) =>{
+	var bcrypt = require('bcrypt');
+	const saltRounds = 10;
+	const password = '123';
+	const hashedPassword = await bcrypt.hash(password, saltRounds);
+	res.json({hashPass: hashedPassword});
+}
+
 // logout 
 const logout = (req, res) =>{
+	
 	res.clearCookie('token');
 	res.redirect('/login');
 }
@@ -62,5 +74,6 @@ const logout = (req, res) =>{
 module.exports = {
 	loginPage,
 	loginUser,
-	logout
+	logout,
+	password
 }
