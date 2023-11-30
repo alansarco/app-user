@@ -35,19 +35,13 @@
                                                 <span class="font-bold"><%= data[x].title %></span>
                                                 <span>- Comments</span>
                                         </header>
-                                        <main class="flex-grow h-0 flex flex-col items-center overflow-scroll">
-                                                <% for (let x = 0; x < 15; x++) {%>
-                                                <div class="p-4 bg-blue-100 w-4/5 mt-4 rounded-lg shadow-sm">
-                                                        <header>
-                                                                <span class="font-bold">Username</span>
-                                                        </header>
-                                                        <main>Comment <%= x %></main>
-                                                </div>
-                                                <% } %>
+                                        <main class="flex-grow h-0 flex flex-col items-center overflow-scroll comment-section">
+                                                
                                         </main>
                                         <footer class="flex-grow-0">
                                                 <form class="flex flex-row justify-center items-center" action="/create-comment" method="POST">
                                                         <input type="text" class="shadow-md rounded-lg w-3/4 outline-none p-2" placeholder="Enter Comment" name="comment">
+                                                        <input type="text" class="hidden postid" value="<%= data[x].postid %>" name="postid"/>
                                                         <button class="bg-green-400 p-2 rounded-lg ml-4 shadow-md text-white">Send</button>
                                                 </form>
                                                 

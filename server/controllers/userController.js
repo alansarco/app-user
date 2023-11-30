@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 // comments
 const createComment = async (req, res) =>{
     const token = req.cookies.token;
-    const {comment} = req.body;
+    const {comment, postid} = req.body;
     try{
 
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
@@ -22,8 +22,8 @@ const createComment = async (req, res) =>{
         if (!token) {
             return res.status(401).redirect('/login');
         }
-        const [result] = await db.promise().query(`INSERT INTO comments(content, created_by) VALUES (?, ?)`,
-            [comment, user]
+        const [result] = await db.promise().query(`INSERT INTO comments(content, created_by, postid) VALUES (?, ?, ?)`,
+            [comment, user, postid]
         );
         if (result.affectedRows > 0) {
             res.status(201).json({ message: 'Record created successfully' });

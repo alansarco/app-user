@@ -3,11 +3,13 @@ const router = express.Router();
 const { dbConnection } = require('../db_connection/dbConnection');
 const {verifyToken} = require('../middlewares/verifyToken');
 const jwt = require('jsonwebtoken');
-const { createComment} = require('../controllers/userController');
+const { createComment } = require('../controllers/userController');
+const { getComments } = require('../controllers/getCommentsController');
 
 
 // comment
 router.post('/create-comment', createComment);
+router.get('/get-comment', getComments);
 
 // some sort of pagination
 let pageSize = 3;
@@ -41,7 +43,7 @@ router.get('/home', (req, res)=>{
 			const db = dbConnection;
 			const offSet = (page - 1) * pageSize;
 
-			db.promise().query('SELECT title, description, created_by, created_at, status FROM announcements LIMIT ?, ?;', [offSet, pageSize])
+			db.promise().query('SELECT title, description, created_by, created_at, status, postid FROM announcements LIMIT ?, ?;', [offSet, pageSize])
 			.then(([results, fields]) => {
 				res.status(200).render('home', {data: results, pageSize: pageSize, user: user, fname: fname, lname: lname});
 			})
