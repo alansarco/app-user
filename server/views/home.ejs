@@ -12,7 +12,10 @@
                                 
                                 <header class="flex flex-col">
                                         <span class="font-bold text-2xl"><%= data[x].title %></span>
-                                        <span class="font-thin text-gray-400"><span class="font-bold"><%= data[x].created_by %></span> - <%= data[x].created_at.toLocaleDateString('en-US',{weekday: 'long', year: 'numeric', month:'long', day: 'numeric'}) %></span>
+                                        <span class="font-thin text-sm text-gray-400">
+                                                <span class="font-bold text-md"><%= data[x].created_by %>
+                                                </span class="text-sm"> - <%= data[x].created_at.toLocaleDateString('en-US',{year: 'numeric', month:'long', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %>
+                                        </span>
                                 </header>
                                 <main class="my-4 bg-indigo-100 rounded-lg p-2 shadow-sm">
                                         <p class="ml-6"><%= data[x].description %></p>
