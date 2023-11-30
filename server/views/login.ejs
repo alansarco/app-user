@@ -6,17 +6,16 @@
     <link href="/output.css" rel="stylesheet"/>
     <title>User App</title>
 </head>
-<body>
-    <div class="h-screen w-screen flex justify-center items-center bg-blue-300">
-        
-        <form action="/login" method="POST"class="h-3/5 w-2/4 bg-white rounded-lg shadow-lg flex flex-col p-4 items-center" id="login_form">
+<body class="bg-blue-300">
+    <div class="h-screen w-screen flex justify-center items-center ">
+        <form action="/login" method="POST"class="w-2/4 bg-white rounded-lg shadow-lg flex flex-col p-4 items-center" id="login_form">
             <div class="flex-grow-0 text-center mt-8 flex flex-col">
-                <span class="text-3xl font-black ">Residents Login</span>
+                <span class="text-2xl font-black mt-4">Residents Login</span>
                 <% if  (msg != null) {%>
                     <div class="bg-red-500 p-2 rounded-lg mt-3" id="error_login"><span class="bg-red-500 text-white text-sm"><%= msg %></span></div>
                 <% } %>
             </div>
-            <div class="flex-grow flex flex-col w-4/5 justify-center">
+            <div class="flex-grow flex flex-col w-4/5 p-4  mb-4 justify-center">
                 <label for="username">Username</label>
                 <input type="text" name="username" placeholder="Enter Username" id="username" class="shadow-md p-3 outline-none rounded-lg mb-6 focus:bg-blue-100" required>
                 <label for="password">Password</label>
