@@ -3,13 +3,11 @@ const router = express.Router();
 const { dbConnection } = require('../db_connection/dbConnection');
 const {verifyToken} = require('../middlewares/verifyToken');
 const jwt = require('jsonwebtoken');
-const { createComment } = require('../controllers/userController');
-const { getComments } = require('../controllers/getCommentsController');
-
+const { createComment, getComments } = require('../controllers/userController');
 
 // comment
-router.post('/create-comment', createComment);
 router.get('/get-comment', getComments);
+router.post('/create-comment', createComment);
 
 // some sort of pagination
 let pageSize = 3;
