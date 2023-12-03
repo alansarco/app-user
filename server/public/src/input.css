@@ -37,3 +37,13 @@
     outline: none;
 }
 
+.text-xs {
+    font-size: 0.8rem;
+}
+.text-xxs {
+    font-size: 0.7rem;
+}   
+
+.text-semiblack {
+    color: #3a3a3a;
+}

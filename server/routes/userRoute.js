@@ -9,6 +9,11 @@ const { createComment, getComments } = require('../controllers/userController');
 router.get('/get-comment', getComments);
 router.post('/create-comment', createComment);
 
+router.get('/cart', (req, res) => {
+	res.render("cart");
+});
+
+
 // some sort of pagination
 let pageSize = 3;
 router.post('/pagination', (req, res) =>{
