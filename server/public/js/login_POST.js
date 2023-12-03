@@ -23,7 +23,6 @@ form.addEventListener('submit', (e) => {
         if(!response.ok){
             throw new Error(`Http Error! response: ${response.status}`)
         }
-        console.log('Response:', response);
         return response;
     })
     .catch(error => {

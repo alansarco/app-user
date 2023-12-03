@@ -6,6 +6,7 @@
     display: grid;
     grid-template-rows: 0fr 1fr 0fr;
 }
+
 .bg-trans{
     background-color: rgba(50,50,50,0.3);
 }
@@ -13,3 +14,26 @@
 ::-webkit-scrollbar {
     width: 0px;
 }
+
+
+.gradient-background {
+    background: linear-gradient(to right, #e83e8c, #805ad5);
+  }
+
+.bg-purple-blue {
+    background:  #805ad5;
+  }
+
+.bg-blue-fade {
+    background:  #805ad575;
+  }
+
+.gradient-background-fade {
+    background: linear-gradient(to right, #e83e8c99, #805ad599);
+  }
+  
+*:focus {
+    border: none;
+    outline: none;
+}
+
