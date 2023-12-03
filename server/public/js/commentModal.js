@@ -10,8 +10,12 @@ const postId = document.getElementsByClassName('postid');
 
 for(let x = 0; x < modal_container.length; x++){
     modal_btn[x].addEventListener('click', () => {
+        requestData = {
+            data: postId[x].value
+        }
+        const queryParams = new URLSearchParams(requestData).toString()
         modal_container[x].style.display = "flex";
-        const apiUrl = `http://localhost:4000/get-comment?postid=${encodeURIComponent(postId[x].value)}`;
+        const apiUrl = `/get-comment?${queryParams}`;
 
         // Make a GET request using the Fetch API
         fetch(apiUrl)
@@ -24,20 +28,36 @@ for(let x = 0; x < modal_container.length; x++){
                 return response.json();
             })
             .then(data => {
+                comment_section[x].innerHTML = '';
                 // Handle the data
-                for(let z = 0; z < data.results.length; z++){
+                if(data.results.length <= 0){
                     var div = document.createElement('div');
+                    div.classList.add('p-4', 'w-4/5', 'mt-4', 'rounded-lg');
                     div.innerHTML = `
-                    <div class="p-4 bg-blue-100 w-4/5 mt-4 rounded-lg shadow-sm">
+                    <header class='text-center'>
+                        <span class="font-bold">No Comments</span>
+                    </header>
+                    <main></main>
+                    `
+                    comment_section[x].appendChild(div);
+                }
+                else{
+                    for(let z = 0; z < data.results.length; z++){
+                        var div = document.createElement('div');
+                        div.classList.add('p-4', 'bg-blue-200', 'w-4/5', 'mt-4', 'rounded-lg', 'shadow-sm', 'cursor-pointer')
+                        div.innerHTML = `
                             <header>
                                     <span class="font-bold">${data.results[z].created_by}</span>
                             </header>
                             <main>${data.results[z].content}</main>
-                    </div>
-                    `
-                    comment_section[x].appendChild(div);
+                        `;
+                        
+                        console.log('Response:', queryParams);
+                        comment_section[x].appendChild(div);
+                        
+                    }
                 }
-                console.log('Data from the API:', data);
+                
             })
             .catch(error => {
                 // Handle errors
@@ -52,10 +72,3 @@ for(let x = 0; x < modal_container.length; x++){
     })
 }
 
-//button click to send data in form
-const send_btn = document.getElementsByClassName('comment_form');
-for(let x = 0; x < modal_container.length; x++){
-    send_btn[x].addEventListener('submit', (e) => {
-        e.preventDefault();
-    })
-}

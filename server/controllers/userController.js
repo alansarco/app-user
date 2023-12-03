@@ -26,7 +26,7 @@ const createComment = async (req, res) =>{
             [comment, user, postid]
         );
         if (result.affectedRows > 0) {
-            res.status(201).json({ message: 'Record created successfully' });
+            res.status(200).json({ user: user });
         } else {
             res.status(500).json({ message: 'Failed to create record' });
           }
@@ -36,6 +36,30 @@ const createComment = async (req, res) =>{
     }
 }
 
+// get comments
+const getComments = async (req, res) => {
+    const token = req.cookies.token;
+    const data = req.query.data;
+    
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Pragma', 'no-cache');
+    if (!token) {
+        return res.status(401).redirect('/login');
+    }
+    // get all the comments
+    try{
+        const db = dbConnection;
+        db.promise().query(`SELECT content, created_at, created_by, postid FROM comments WHERE postid = '${data}'`)
+			.then(([results, fields]) => {
+				res.json({results});
+			})
+			.catch(error => res.status(500).json({errorMsg: `Shit happens ${error}`}));
+    }catch(err){
+        return res.status(401).json({"error": "error getting comments"});      
+    }
+}
+
 module.exports = {
-    createComment
+    createComment,
+    getComments
 }
