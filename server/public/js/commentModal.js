@@ -44,10 +44,10 @@ for(let x = 0; x < modal_container.length; x++){
                 else{
                     for(let z = 0; z < data.results.length; z++){
                         var div = document.createElement('div');
-                        div.classList.add('p-4', 'bg-blue-200', 'w-4/5', 'mt-4', 'rounded-lg', 'shadow-sm', 'cursor-pointer')
+                        div.classList.add('p-4', 'bg-blue-fade', 'w-4/5', 'mt-4', 'rounded-lg', 'shadow-sm', 'cursor-pointer')
                         div.innerHTML = `
                             <header>
-                                    <span class="font-bold">${data.results[z].created_by}</span>
+                                    <span class="font-bold text-white">${data.results[z].created_by}</span>
                             </header>
                             <main>${data.results[z].content}</main>
                         `;
