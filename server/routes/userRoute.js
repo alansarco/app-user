@@ -41,7 +41,7 @@ router.get('/home', (req, res)=>{
 			const db = dbConnection;
 			const offSet = (page - 1) * pageSize;
 
-			db.promise().query('SELECT title, description, created_by, created_at, status, postid FROM announcements LIMIT ?, ?;', [offSet, pageSize])
+			db.promise().query('SELECT A.title, A.description, A.created_by, A.created_at, A.status, A.postid, B.firstname, B.lastname FROM announcements A LEFT JOIN residents B ON A.created_by = B.username  LIMIT ?, ?;', [offSet, pageSize])
 			.then(([results, fields]) => {
 				res.status(200).render('home', {data: results, pageSize: pageSize, user: user, fname: fname, lname: lname});
 			})
