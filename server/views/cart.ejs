@@ -1,8 +1,42 @@
 <%- include('partials/header');  %>
 
+<main class="flex flex-col mt-3 shadow-2xl rounded-lg relative">
+    <section class="flex-grow-0 text-center bg-purple-blue rounded-t-lg p-2">
+        <button class="bg-white px-3 py-1 rounded-full cursor-pointer transition-shadow duration-200 hover:shadow-md absolute top-2 right-2">+</button>
+        <span class="font-normal text-white text-lg">Cart</span>
+    </section>
 
-        <main>Cart</main>
+    <section class="flex-grow h-0 flex flex-col items-center overflow-scroll bg-blue-fade rounded-b-lg p-4 text-left">
+        <div class="text-left text-sm font-bold text-white text">Active Requests</div>
+        <div class="bg-white w-full rounded-lg p-4 mt-3 shadow-md flex justify-between">
+            <div class="flex flex-col">
+                <span class="font-bold text-sm text-semiblack">Certificate of Residency</span>
+                <span class="font-thin text-xxs text-gray-400">
+                    <span >December 20, 2023 at 7:58 PM</span>
+                </span>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-xs text-yellow-400">Pending</span>
+            </div>
+        </div>
 
-        <footer>Footer</footer>
+        <div class="text-left text-sm font-bold text-white text mt-4">Previous Requests</div>
+        <div class="bg-white w-full rounded-lg p-4 mt-3 shadow-md flex justify-between">
+            <div class="flex flex-col">
+                <span class="font-bold text-sm text-semiblack">Certificate of Indigency</span>
+                <span class="font-thin text-xxs text-gray-400">
+                    <span>December 20, 2023 at 7:58 PM</span>
+                </span>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-xs text-blue-400">Finished</span>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer></footer>
+<script src="js/sendData.js"></script>
+<script src="js/commentModal.js"></script>
 
 <%- include('partials/footer');  %>
