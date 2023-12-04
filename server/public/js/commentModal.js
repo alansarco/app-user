@@ -34,7 +34,7 @@ for(let x = 0; x < modal_container.length; x++){
                     var div = document.createElement('div');
                     div.classList.add('p-4', 'w-4/5', 'mt-4', 'rounded-lg');
                     div.innerHTML = `
-                    <header class='text-center'>
+                    <header class='text-center text-xs'>
                         <span class="font-bold">No Comments</span>
                     </header>
                     <main></main>
@@ -47,9 +47,9 @@ for(let x = 0; x < modal_container.length; x++){
                         div.classList.add('p-4', 'bg-blue-fade', 'w-4/5', 'mt-4', 'rounded-lg', 'shadow-sm', 'cursor-pointer')
                         div.innerHTML = `
                             <header>
-                                    <span class="font-bold text-white">${data.results[z].created_by}</span>
+                                    <span class="font-bold text-white text-xs">${data.results[z].firstname} ${data.results[z].lastname}</span>
                             </header>
-                            <main>${data.results[z].content}</main>
+                            <main class="text-xxs">${data.results[z].content}</main>
                         `;
                         
                         console.log('Response:', queryParams);

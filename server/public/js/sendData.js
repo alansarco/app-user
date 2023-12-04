@@ -58,7 +58,7 @@ for(let x = 0; x < send_btn.length; x++){
                         throw new Error(`Http Error! response: ${response.status}`)
                     }
                     const div = document.createElement('div');
-                    div.classList.add('p-4', 'bg-blue-fade', 'w-4/5', 'mt-4', 'rounded-lg', 'shadow-sm', 'cursor-pointer')
+                    div.classList.add('p-4', 'bg-blue-fade', 'w-4/5', 'mt-4', 'rounded-lg', 'shadow-sm', 'cursor-pointer', 'text-xxs')
                     div.innerHTML = `
                         <header>
                                 <span class="font-bold"></span>

@@ -49,7 +49,7 @@ const getComments = async (req, res) => {
     // get all the comments
     try{
         const db = dbConnection;
-        db.promise().query(`SELECT content, created_at, created_by, postid FROM comments WHERE postid = '${data}'`)
+        db.promise().query(`SELECT A.content, A.created_at, A.created_by, A.postid, B.firstname, B.lastname FROM comments A LEFT JOIN residents B ON A.created_by = B.username WHERE postid = '${data}'`)
 			.then(([results, fields]) => {
 				res.json({results});
 			})
