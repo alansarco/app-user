@@ -77,7 +77,7 @@ form.addEventListener('submit', (e) => {
         console.error(`Fetch Error: ${error}`);
     });
 
-    currentPassword.value = '';
-    newPassword.value = '';
-    confirmNewPassword.value = '';
+    // currentPassword.value = '';
+    // newPassword.value = '';
+    // confirmNewPassword.value = '';
 })
