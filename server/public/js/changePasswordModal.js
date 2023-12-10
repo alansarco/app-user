@@ -66,6 +66,7 @@ form.addEventListener('submit', (e) => {
         }else{
             successOnPassword.style.display = 'block';
             successOnPassword.textContent = 'Password Changed!';
+            window.location.href = "/logout";
         }
         if(value3.newPassword != value3.confirmNewPassword){
             errorOnPassword.style.display = 'block';

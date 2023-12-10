@@ -49,7 +49,6 @@ for(let x = 0; x < modal_container.length; x++){
                             <header>
                                     <span class="font-bold text-white text-xs">${data.results[z].firstname} ${data.results[z].lastname}</span>
                                     <p class="text-xxs text-semiblack">${data.results[z].formatted_created_at}</p>
-                                    <span class="text-white text-xs">${data.results[z].created_at}</span>
                             </header>
                             <main class="text-xs mt-3">${data.results[z].content}</main>
                         `;

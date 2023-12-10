@@ -18,6 +18,7 @@ const createComment = async (req, res) =>{
         
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
         res.header('Pragma', 'no-cache');
+        // const dateTime = new Date().getTime();
         const db = dbConnection;
         if (!token) {
             return res.status(401).redirect('/login');

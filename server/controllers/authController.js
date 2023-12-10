@@ -83,10 +83,20 @@ const changePassword = async (req, res) => {
 				const hashedNewPass = await bcrypt.hash(newPass, 10);
 				console.log('Password matched and updated!');
 				console.log(hashedNewPass);
-				// const db = dbConnection;
-				// db.promise().query(`UPDATE users SET password = (${hashedNewPass}) WHERE username = ${decoded.user.username}`);
+				const db = dbConnection;
+				const [result] = await db.promise().query(`UPDATE users SET password = (?) WHERE username = (?)`,
+					[hashedNewPass, decoded.user.username]
+				);
+				if (result.affectedRows > 0) {
+					return res.status(200).json({ res: 200 });
+				} else {
+					return res.status(500).json({ res: 500 });
+				}
 			}
-			return res.json({res: 200});
+			else{
+				return res.json({res: 500}); 
+			}
+			
 		}else{
 			return res.json({res: 500});
 		}
