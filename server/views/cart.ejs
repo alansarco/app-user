@@ -2,7 +2,7 @@
 
 <main class="flex flex-col mt-3 shadow-2xl rounded-lg relative">
     <section class="flex-grow-0 text-center bg-purple-blue rounded-t-lg p-2">
-        <button class="bg-indigo-100 px-3 py-1 rounded-full cursor-pointer transition-shadow duration-200 hover:shadow-md absolute top-2 right-2">+</button>
+        <button class="request_btn bg-indigo-100 px-3 py-1 rounded-full cursor-pointer transition-shadow duration-200 hover:shadow-md absolute top-2 right-2">+</button>
         <span class="font-normal text-white text-lg">Cart</span>
     </section>
 
@@ -32,11 +32,31 @@
                 <span class="text-xs text-blue-400">Finished</span>
             </div>
         </div>
+        <!-- request section -->
+        <div class="absolute top-0 left-0 h-full w-full border accent-slate-200  rounded-lg justify-center items-center request_container bg-trans">
+            <div class="w-5/6 h-5/6 bg-white rounded-lg shadow-2xl flex flex-col p-4" id="requests">
+                    <div class="flex-grow-0 flex items-center justify-end">
+                            <i class="bi bi-x-square-fill text-xl text-red-500 cursor-pointer close_btn"></i>
+                    </div>
+                    <header class="flex-grow-0 flex items-center justify-center text-md">
+                            <span class="font-bold">None</span>
+                    </header>
+                    <main class="flex-grow h-0 flex flex-col items-center overflow-scroll request-section">
+                            
+                    </main>
+                    <footer class="flex-grow-0">
+                            <form class="flex flex-row justify-center items-center request_form">
+                                    <input type="text" class="shadow-md text-sm rounded-lg w-3/4 outline-none p-2 request_content" placeholder="Enter request" name="request">
+                                    <button class="bg-green-400 p-2 rounded-lg ml-4 shadow-md text-white text-sm">Send</button>
+                            </form>
+                    </footer>
+            </div>
+        </div>
     </section>
 </main>
 
 <footer></footer>
-<script src="js/sendData.js"></script>
-<script src="js/commentModal.js"></script>
+<!-- <script src="js/sendData.js"></script> -->
+<!-- <script src="js/requestModal.js"></script> -->
 
 <%- include('partials/footer');  %>

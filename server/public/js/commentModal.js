@@ -48,8 +48,9 @@ for(let x = 0; x < modal_container.length; x++){
                         div.innerHTML = `
                             <header>
                                     <span class="font-bold text-white text-xs">${data.results[z].firstname} ${data.results[z].lastname}</span>
+                                    <p class="text-xxs text-semiblack">${data.results[z].formatted_created_at}</p>
                             </header>
-                            <main class="text-xxs">${data.results[z].content}</main>
+                            <main class="text-xs mt-3">${data.results[z].content}</main>
                         `;
                         
                         console.log('Response:', queryParams);
