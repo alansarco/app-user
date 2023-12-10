@@ -10,6 +10,13 @@ router.get('/get-comment', getComments);
 router.post('/create-comment', createComment);
 
 router.get('/cart', (req, res) => {
+	const token = req.cookies.token;
+
+	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  	res.header('Pragma', 'no-cache');
+	if (!token) {
+        return res.status(401).redirect('/login');
+    }
 	res.render("cart");
 });
 
@@ -68,10 +75,15 @@ router.get('/profile', (req, res)=>{
         return res.status(401).redirect('/login');
     }
 
-	const decoded = jwt.verify(token, process.env.SECRET);
-	const user = decoded.user.username;
-	const fname = decoded.user.firstName;
-	const lname = decoded.user.lastName;
-    res.status(200).render('profile', {page: 'profile', user: user, fname: fname, lname: lname});
+	try{
+		const decoded = jwt.verify(token, process.env.SECRET);
+		const user = decoded.user.username;
+		const fname = decoded.user.firstName;
+		const lname = decoded.user.lastName;
+		res.status(200).render('profile', {page: 'profile', user: user, fname: fname, lname: lname});
+	}
+	catch(err){
+		res.status(500).json({msg: "something went wrong!"})
+	}
 });
 module.exports = router;

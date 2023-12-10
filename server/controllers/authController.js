@@ -63,9 +63,12 @@ const password = async (req, res) =>{
 	res.json({hashPass: hashedPassword});
 }
 
+const changePassword = async (req, res) => {
+
+}
+
 // logout 
 const logout = (req, res) =>{
-	
 	res.clearCookie('token');
 	res.redirect('/login');
 }
@@ -75,5 +78,6 @@ module.exports = {
 	loginPage,
 	loginUser,
 	logout,
-	password
+	password,
+	changePassword
 }
