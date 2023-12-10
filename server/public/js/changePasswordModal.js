@@ -33,9 +33,6 @@ const uri3 = '/changePassword';
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(currentPassword.value);
-    console.log(newPassword.value);
-    console.log(confirmNewPassword.value);
 
     const value3 = {
         currentPassword: currentPassword.value,

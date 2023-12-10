@@ -24,7 +24,40 @@
                 <a href="/logout"class="text-xs gradient-background text-white p-2 rounded-md cursor-pointer">Logout</a>
             </div>
             <!-- modal for changing password -->
-            <div class="absolute top-0 left-0 w-full h-full accent-slate-200 rounded-md bg-trans hidden justify-center items-center" id="modal_change_pass">
+            <div class="absolute top-0 left-0 h-full w-full border accent-slate-200 rounded-lg justify-center items-center hidden bg-trans" id="modal_change_pass">
+                <form class="w-5/6 h-5/6 bg-white rounded-md shadow-sm flex flex-col p-4 px-6" id="form_change_pass">
+                        <div class="flex-grow-0 flex items-center justify-end">
+                                <i class="bi bi-x-square-fill text-xl text-red-500 cursor-pointer" id="close_pass"></i>
+                        </div>
+                        <header class="flex-grow-0 flex items-center justify-center text-md">
+                                <span class="font-bold">Change Password</span>
+                        </header>
+                        <main class="flex-grow h-0 flex flex-col items-center overflow-scroll">
+                            <span class="text-gray-400 text-xs mb-4 ">
+                                <span class="font-bold">Note</span>: After changing password you will be logged out
+                            </span>
+                            <span class="text-xs bg-red-400 text-white text-center rounded-lg hidden p-2" id="password_error">
+                                Current Password inccorect
+                            </span>
+                            <span class="text-xs bg-green-400 text-white text-center rounded-lg hidden p-2" id="password_success">
+                                Current Password inccorent
+                            </span>
+                            <label for="current_password" class="text-xs mt-4"> Enter current password</label>
+                            <input type="password" name="current_password" id="current_password" class="shadow-md mb-3 p-2 rounded-md w-full border" required>
+                            
+                            <label for="current_password" class="text-xs"> Enter new password</label>
+                            <input type="password" name="new_password" id="new_password" class="shadow-md mb-3 p-2 rounded-md w-full border" required>
+                            
+                            <label for="confirm_new_password" class="text-xs"> Confirm new password</label>
+                            <input type="password" name="confirm_new_password" id="confirm_new_password" class="shadow-md mb-3 p-2 rounded-md w-full border" required>
+                        </main>
+                        <footer class="flex-grow-0">
+                            <button class="bg-green-400 w-full rounded-md p-2 font-bold text-white shadow-sm text-xs" id="submit_pass">Submit</button>
+                        </footer>
+                </form>
+            </div>
+            
+            <!-- <div class="absolute top-0 left-0 w-full h-full accent-slate-200 rounded-md bg-trans hidden justify-center items-center" id="modal_change_pass">
                 <form class="w-3/4 h-3/5 bg-white rounded-md shadow-sm flex flex-col p-4 px-6" id="form_change_pass">
                     <span class="text-center font-bold text-base mb-7">Change Password</span>
                     
@@ -44,15 +77,13 @@
                     <button class="bg-green-400 rounded-md p-2 mt-4 font-bold text-white shadow-sm text-xs" id="submit_pass">Submit</button>
                     <div class="bg-red-400 rounded-md p-2 mt-3 font-bold text-white shadow-sm text-xs text-center cursor-pointer" id="close_pass">Cancel</div>
                 </form>
-            </div>
+            </div> -->
 
         </div>
     </section>
 </main>
 
 <footer></footer>
-<script src="js/sendData.js"></script>
-<script src="js/commentModal.js"></script>
 <script src="js/changePasswordModal.js"></script>
 
 <%- include('partials/footer');  %>
