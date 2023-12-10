@@ -48,6 +48,7 @@ for(let x = 0; x < modal_container.length; x++){
                         div.innerHTML = `
                             <header>
                                     <span class="font-bold text-white text-xs">${data.results[z].firstname} ${data.results[z].lastname}</span>
+                                    <span class="text-white text-xs">${data.results[z].created_at}</span>
                             </header>
                             <main class="text-xxs">${data.results[z].content}</main>
                         `;
