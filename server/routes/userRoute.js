@@ -3,11 +3,12 @@ const router = express.Router();
 const { dbConnection } = require('../db_connection/dbConnection');
 const {verifyToken} = require('../middlewares/verifyToken');
 const jwt = require('jsonwebtoken');
-const { createComment, getComments } = require('../controllers/userController');
+const { createComment, getComments, createRequest } = require('../controllers/userController');
 
 // comment
 router.get('/get-comment', getComments);
 router.post('/create-comment', createComment);
+router.post('/create-request', createRequest);
 
 router.get('/cart', (req, res) => {
 	const token = req.cookies.token;
