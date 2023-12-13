@@ -27,6 +27,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.listen(4000, process.env.IP, () => {
+app.listen(3000, process.env.IP, () => {
     console.log('Running on port 4000');
 });
