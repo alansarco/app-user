@@ -7,31 +7,139 @@
     </section>
 
     <section class="flex-grow h-0 flex flex-col items-center overflow-scroll bg-blue-fade rounded-b-lg p-4 text-left">
-        <div class="text-left text-sm font-bold text-white text">Active Requests</div>
-        <div class="bg-white w-full rounded-lg p-4 mt-3 shadow-md flex justify-between">
-            <div class="flex flex-col">
-                <span class="font-bold text-sm text-semiblack">Certificate of Residency</span>
-                <span class="font-thin text-xxs text-gray-400">
-                    <span >December 20, 2023 at 7:58 PM</span>
-                </span>
-            </div>
-            <div class="flex flex-col">
-                <span class="text-xs text-yellow-400">Pending</span>
-            </div>
-        </div>
+        <!-- Pending Requests -->
+        <% if (pending.length > 0) {%>
+        <div class="text-left text-sm font-bold text-white text mt-4">Pending Requests</div>
+            <% for (let x = 0; x < pending.length; x++) {%>
+                <div class="bg-white w-full rounded-lg p-4 mt-3 shadow-md flex justify-between">
+                    <div class="flex flex-col">
+                        <% if (pending[x].docType == 1) {%>
+                            <span class="font-bold text-sm text-semiblack">
+                                Certificate Of Indigency
+                            </span>  
+                        <% } %>
+                        <%if (pending[x].docType == 2) {%>
+                            <span class="font-bold text-sm text-semiblack">
+                                Certificate Of Residency
+                            </span>  
+                        <% } %>
+                        <span class="font-thin text-xxs text-gray-400">
+                            <span ><%= pending[x].date %></span>
+                        </span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xs text-yellow-400">Pending</span>
+                    </div>
+                </div>
+            <% } }%>
+            <!-- End Pending Requests -->
+        <!-- Process Requests -->
+        <% if (process.length > 0) {%>
+        <div class="text-left text-sm font-bold text-white text mt-4">Processing Requests</div>
+            <% for (let x = 0; x < process.length; x++) {%>
+                <div class="bg-white w-full rounded-lg p-4 mt-3 shadow-md flex justify-between">
+                    <div class="flex flex-col">
+                        <% if (process[x].docType == 1) {%>
+                            <span class="font-bold text-sm text-semiblack">
+                                Certificate Of Indigency
+                            </span>  
+                        <% } %>
+                        <%if (process[x].docType == 2) {%>
+                            <span class="font-bold text-sm text-semiblack">
+                                Certificate Of Residency
+                            </span>  
+                        <% } %>
+                        <span class="font-thin text-xxs text-gray-400">
+                            <span ><%= process[x].date %></span>
+                        </span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xs text-blue-400">Processing</span>
+                    </div>
+                </div>
+            <% } }%>
+            <!-- End Process Requests -->
 
-        <div class="text-left text-sm font-bold text-white text mt-4">Previous Requests</div>
-        <div class="bg-white w-full rounded-lg p-4 mt-3 shadow-md flex justify-between">
-            <div class="flex flex-col">
-                <span class="font-bold text-sm text-semiblack">Certificate of Indigency</span>
-                <span class="font-thin text-xxs text-gray-400">
-                    <span>December 20, 2023 at 7:58 PM</span>
-                </span>
+            <!-- For Pick Up Requests -->
+            <% if (forPickup.length > 0) {%>
+        <div class="text-left text-sm font-bold text-white text mt-4">For Pick Up Requests</div>
+        <% for (let x = 0; x < forPickup.length; x++) {%>
+            <div class="bg-white w-full rounded-lg p-4 mt-3 shadow-md flex justify-between">
+                <div class="flex flex-col">
+                    <% if (forPickup[x].docType == 1) {%>
+                        <span class="font-bold text-sm text-semiblack">
+                            Certificate Of Indigency
+                        </span>  
+                    <% } %>
+                    <%if (forPickup[x].docType == 2) {%>
+                        <span class="font-bold text-sm text-semiblack">
+                            Certificate Of Residency
+                        </span>  
+                    <% } %>
+                    <span class="font-thin text-xxs text-gray-400">
+                        <span ><%= forPickup[x].date %></span>
+                    </span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xs text-gray-400">For Pick Up</span>
+                </div>
             </div>
-            <div class="flex flex-col">
-                <span class="text-xs text-blue-400">Finished</span>
-            </div>
-        </div>
+        <% } }%>
+        <!-- End For Pick Up Requests Requests -->
+
+         <!-- finished Requests -->
+         <% if (finished.length > 0) {%>
+         <div class="text-left text-sm font-bold text-white text mt-4">Finished Requests</div>
+         <% for (let x = 0; x < finished.length; x++) {%>
+             <div class="bg-white w-full rounded-lg p-4 mt-3 shadow-md flex justify-between">
+                 <div class="flex flex-col">
+                     <% if (finished[x].docType == 1) {%>
+                         <span class="font-bold text-sm text-semiblack">
+                             Certificate Of Indigency
+                         </span>  
+                     <% } %>
+                     <%if (finished[x].docType == 2) {%>
+                         <span class="font-bold text-sm text-semiblack">
+                             Certificate Of Residency
+                         </span>  
+                     <% } %>
+                     <span class="font-thin text-xxs text-gray-400">
+                         <span ><%= finished[x].date %></span>
+                     </span>
+                 </div>
+                 <div class="flex flex-col">
+                     <span class="text-xs text-green-400">finished</span>
+                 </div>
+             </div>
+         <% } }%>
+         <!-- End finished Requests -->
+
+         <!-- canceled Requests -->
+         <% if (canceled.length > 0) {%>
+         <div class="text-left text-sm font-bold text-white text mt-4">Canceled Requests</div>
+         <% for (let x = 0; x < canceled.length; x++) {%>
+             <div class="bg-white w-full rounded-lg p-4 mt-3 shadow-md flex justify-between">
+                 <div class="flex flex-col">
+                     <% if (canceled[x].docType == 1) {%>
+                         <span class="font-bold text-sm text-semiblack">
+                             Certificate Of Indigency
+                         </span>  
+                     <% } %>
+                     <%if (canceled[x].docType == 2) {%>
+                         <span class="font-bold text-sm text-semiblack">
+                             Certificate Of Residency
+                         </span>  
+                     <% } %>
+                     <span class="font-thin text-xxs text-gray-400">
+                         <span ><%= canceled[x].date %></span>
+                     </span>
+                 </div>
+                 <div class="flex flex-col">
+                     <span class="text-xs text-red-400">canceled</span>
+                 </div>
+             </div>
+         <% } }%>
+         <!-- End finished Requests -->
         <!-- request section modal -->
         <div class="absolute top-0 left-0 h-full w-full border accent-slate-200  rounded-lg justify-center items-center request_container bg-trans hidden flex-col" id="modal_request">
             <div class="w-5/6 h-5/6 bg-white rounded-lg shadow-2xl flex flex-col p-4" id="requests">

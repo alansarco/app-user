@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { dbConnection } = require('../db_connection/dbConnection');
+const { dbConnection, dbConnection2 } = require('../db_connection/dbConnection');
 const {verifyToken} = require('../middlewares/verifyToken');
 const jwt = require('jsonwebtoken');
 const { createComment, getComments, createRequest } = require('../controllers/userController');
@@ -10,7 +10,7 @@ router.get('/get-comment', getComments);
 router.post('/create-comment', createComment);
 router.post('/create-request', createRequest);
 
-router.get('/cart', (req, res) => {
+router.get('/cart', async (req, res) => {
 	const token = req.cookies.token;
 
 	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
@@ -18,7 +18,88 @@ router.get('/cart', (req, res) => {
 	if (!token) {
         return res.status(401).redirect('/login');
     }
-	res.render("cart");
+	try{
+		const decoded = jwt.verify(token, process.env.SECRET);
+		const user = decoded.user.username;
+		const db = dbConnection2;
+		var dataArrPending = [];
+		var dataArrCanceled = [];
+		var dataArrProcessed = [];
+		var dataArrForPickUp = [];
+		var dataArrFinished = [];
+
+		const [rows] = await db.execute(`SELECT purpose, created_at, doctype, status, requestor FROM requests WHERE requestor = '${user}'`)
+		// resulst
+		// 0- cancel 1 - pending 2-process 3-for pick up 4-finish
+		rows.map(items => {
+			// if status is pending
+			if(items.status == 0){
+				var tempArr = {
+					status: 'Canceled',
+					purpose: items.purpose,
+					date: items.created_at,
+					docType: items.doctype,
+					requestor: items.requestor
+				}
+				dataArrCanceled.push(tempArr);
+			}
+			else if(items.status == 1){
+				var tempArr = {
+					status: 'Pending',
+					purpose: items.purpose,
+					date: items.created_at,
+					docType: items.doctype,
+					requestor: items.requestor
+				}
+				dataArrPending.push(tempArr);
+			}
+			else if(items.status == 2){
+				var tempArr = {
+					status: 'Processed',
+					purpose: items.purpose,
+					date: items.created_at,
+					docType: items.doctype,
+					requestor: items.requestor
+				}
+				dataArrProcessed.push(tempArr);
+			}
+			else if(items.status == 3){
+				var tempArr = {
+					status: 'For Pick Up',
+					purpose: items.purpose,
+					date: items.created_at,
+					docType: items.doctype,
+					requestor: items.requestor
+				}
+				dataArrForPickUp.push(tempArr);
+			}
+			else if(items.status == 4){
+				var tempArr = {
+					status: 'Finished',
+					purpose: items.purpose,
+					date: items.created_at,
+					docType: items.doctype,
+					requestor: items.requestor
+				}
+				dataArrFinished.push(tempArr);
+			}
+		})
+		console.log('Canceled: ',dataArrCanceled);
+		console.log('Pending: ', dataArrPending);
+		console.log('Processing: ', dataArrProcessed);
+		console.log('For Pick Up: ',dataArrForPickUp);
+		console.log('Finished: ', dataArrFinished);
+		res.render("cart", {
+			canceled: dataArrCanceled, 
+			pending: dataArrPending, 
+			process: dataArrProcessed, 
+			forPickup: dataArrForPickUp,
+			finished: dataArrFinished
+		});
+	}
+	catch(err){
+		console.error(err);
+	}
 });
 
 

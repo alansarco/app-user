@@ -45,6 +45,8 @@ request_document_form.addEventListener('submit', (e) => {
     }).then( data => {
         if(data.res == 200){
             request_success.style.display = 'block';
+            request_error.style.display = 'none';
+            location.reload();
         }
         else if(data.res == 500){
             request_error.style.display = 'block';
