@@ -149,27 +149,33 @@
                     <header class="flex-grow-0 flex items-center justify-center text-md mb-6">
                             <span class="font-bold">Request Document</span>
                     </header>
-                    <main class="flex-grow h-0 flex flex-col items-center overflow-scroll request-section">
-                            <form class="flex flex-col w-4/5" id="request_document_form">
-                                <span class="text-xs bg-green-400 text-white p-1 rounded-md text-center hidden" id="request_success">Request Created</span>
-                                <span class="text-xs bg-red-400 text-white p-1 rounded-md text-center hidden" id="request_error">Cannot Make Request</span>
-                                <label for="documentType" class="text-xs mt-6">Document Type</label>
-                                <select name="documentType" id="documentType" class="text-xs rounded-lg shadow-md p-2 cursor-pointer font-bold" required>
-                                    <option value="1">Indigency</option>
-                                    <option value="2">Residency</option>
-                                </select>
+                    <main class="flex-grow h-0 flex flex-col items-center request-section">
+                            <form class="flex flex-col w-4/5 h-4/5" id="request_document_form">
+                                <main class="flex-grow-1 flex flex-col overflow-scroll">
+                                    <span class="text-xs bg-green-400 text-white p-1 rounded-md text-center hidden" id="request_success">Request Created</span>
+                                    <span class="text-xs bg-red-400 text-white p-1 rounded-md text-center hidden" id="request_error">Cannot Make Request</span>
+                                    <label for="documentType" class="text-xs mt-6">Document Type</label>
+                                    <select name="documentType" id="documentType" class="text-xs rounded-lg shadow-md p-2 cursor-pointer font-bold" required>
+                                        <option value="1">Indigency</option>
+                                        <option value="2">Residency</option>
+                                    </select>
 
-                                <label for="dateNeeded" class="text-xs mt-6">Date Needed</label>
-                                <input type="date" name="dateNeeded" class="text-xs rounded-lg shadow-md p-2 cursor-pointer font-bold" id="dateNeeded" required>
+                                    <label for="dateNeeded" class="text-xs mt-6">Date Needed</label>
+                                    <input type="date" name="dateNeeded" class="text-xs rounded-lg shadow-md p-2 cursor-pointer font-bold" id="dateNeeded" required>
 
-                                <label for="purpose" class="text-xs mt-6">Purpose</label>
-                                <textarea name="purpose" cols="30" rows="10" class="rounded-md shadow-md p-4 resize-none h-2/5" placeholder="Enter Text" id="purpose" required></textarea>
-
-                                <button class="bg-green-400 text-white font-bold text-xs mt-6 rounded-md p-3" id="submit_request">Submit</button>
+                                    <label for="purpose" class="text-xs mt-6">Purpose</label>
+                                    <textarea name="purpose" cols="30" rows="10" class="rounded-md shadow-md p-4 resize-none h-2/5" placeholder="Enter Text" id="purpose" required></textarea>
+                                </main>
+                                
+                                <footer class="flex-grow-0 flex flex-col justify-center">
+                                    <button class="bg-green-400 text-white font-bold text-xs rounded-md p-3" id="submit_request">Submit</button>
+                                </footer>
+                                
+                                
                             </form>
                     </main>
                     <footer class="flex-grow-0">
-                            
+                        
                     </footer>
             </div>
         </div>

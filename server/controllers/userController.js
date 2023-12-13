@@ -92,7 +92,7 @@ const createRequest = async (req, res) =>{
         if(rows.length > 0){
             for(const items of rows){
                 if((items.status == 1 || items.status == 2 || items.status == 3 ) && (items.doctype == values.documentType)){
-                    res.json({res: 500});
+                    return res.json({res: 500});
                 }
                 else if(items.doctype != values.documentType){
                     const [result] = await db2.promise().query(`INSERT INTO requests (status, doctype, purpose, date_needed, created_at, requestor) VALUES(?,?,?,?,?,?)`,

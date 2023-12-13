@@ -19,7 +19,6 @@ btn_close[0].addEventListener('click', () => {
 
 
 // request some shit
-
 request_document_form.addEventListener('submit', (e) => {
     e.preventDefault();
 
