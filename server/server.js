@@ -27,10 +27,6 @@ app.use((req, res, next) => {
     next();
 });
 
-const PORT = process.env.PORT || 3000; // Use the environment port if available, or default to 4000
-const IP = process.env.IP || 'localhost'; // Use the environment IP if available, or default to localhost
-
-app.listen(PORT, IP, () => {
-    console.log(`Running on http://${IP}:${PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+    console.log('Server is running');
 });
-
