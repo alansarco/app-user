@@ -47,7 +47,8 @@ const loginUser = async (req, res) => {
 			
 		})
 		.catch(error => {
-			const dataToSend = `User does not exist`;
+			const dataToSend = `User does not exist ${error}`;
+			console.log(error);
 			res.redirect(`/login?data=${encodeURIComponent(dataToSend)}`);
 		});
 	}
