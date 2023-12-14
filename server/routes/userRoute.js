@@ -122,11 +122,11 @@ router.get('/home', (req, res)=>{
     const page = 1;
 	const token = req.cookies.token;
 
-// 	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-//   	res.header('Pragma', 'no-cache');
-// 	if (!token) {
-//         return res.status(401).redirect('/login');
-//     }
+	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  	res.header('Pragma', 'no-cache');
+	if (!token) {
+        return res.status(401).redirect('/login');
+    }
     try{
 			const decoded = jwt.verify(token, process.env.SECRET);
 			const user = decoded.user.username;
