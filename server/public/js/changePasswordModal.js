@@ -28,7 +28,7 @@ close_modal.addEventListener('click', () => {
 
 // fetch data from api
 // send some data
-const uri3 = 'https://app-user-obuwk.ondigitalocean.app/changePassword';
+const uri3 = '/changePassword';
 
 
 form.addEventListener('submit', (e) => {

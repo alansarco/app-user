@@ -4,6 +4,13 @@ const jwt = require('jsonwebtoken');
 // login page
 const loginPage = (req, res) => {
     try{
+		const token = req.cookies.token;
+
+		res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+		res.header('Pragma', 'no-cache');
+		if (token) {
+			return res.status(401).redirect('/home');
+		}
 		const msg = req.query.data;
 		res.status(200).render('login', {msg: msg});
 	}
@@ -14,6 +21,7 @@ const loginPage = (req, res) => {
 // login submit
 const loginUser = async (req, res) => {
     try{
+	
 		const formData = req.body;
 		const db = dbConnection;
 		db.promise().query(`SELECT u.username, u.id, u.password, r.firstname, r.lastname FROM users u LEFT JOIN residents r ON u.username = r.username WHERE u.username = '${formData.username}' AND r.deathdate IS NULL AND r.account_status = 1;`)
