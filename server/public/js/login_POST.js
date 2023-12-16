@@ -6,7 +6,6 @@ form.addEventListener('submit', (e) => {
   
     // setup some stuff
      
-    app-user-obuwk.ondigitalocean.app
     const uri = 'https://app-user-obuwk.ondigitalocean.app/login';
     let value = {
         username: username.value,
