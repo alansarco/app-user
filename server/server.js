@@ -4,7 +4,6 @@ const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const path = require('path');
-const { dbConnection, dbConnection2 } = require('./db_connection/dbConnection');
 
 // middlewares
 app.use(cors());
@@ -26,16 +25,6 @@ app.use('/', user);
 app.use((req, res, next) => {
     res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     next();
-});
-
-
-// Handle database connection errors
-dbConnection.on('error', (err) => {
-    console.log('Database Connection Error:', err);
-});
-
-dbConnection2.on('error', (err) => {
-    console.log('Database Connection 2 Error:', err);
 });
 
 app.listen(process.env.PORT || 3000, () => {
