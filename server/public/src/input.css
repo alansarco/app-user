@@ -51,3 +51,9 @@
 .text-left {
     text-align: left !important;
 }
+
+@media (min-width: 350px) {
+    .sm\:h-screen {
+      height: 100vh;
+    }
+}
