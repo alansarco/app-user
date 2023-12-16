@@ -22,7 +22,7 @@ btn_close[0].addEventListener('click', () => {
 request_document_form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const uri = '/create-request';
+    const uri = 'https://app-user-obuwk.ondigitalocean.app/create-request';
     var data = {
         documentType: document.getElementById('documentType').value,
         dateNeeded: document.getElementById('dateNeeded').value,

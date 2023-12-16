@@ -1,5 +1,5 @@
 // send some data
-const uri = '/pagination';
+const uri = 'https://app-user-obuwk.ondigitalocean.app/pagination';
 const value = {
     pageSize: 3
 }
