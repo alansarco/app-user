@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { loginPage, loginUser, logout, password, changePassword } = require('../controllers/authController');
 
-router.get('/', loginPage);
+router.get('/', loginPage);   
+router.post('/', loginUser);
 router.get('/login', loginPage);
 router.post('/login', loginUser);
 router.get('/logout', logout);
