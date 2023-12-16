@@ -27,6 +27,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.listen(process.env.PORT || 3000, "app-user-obuwk.ondigitalocean.app", () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Server is running');
 });
